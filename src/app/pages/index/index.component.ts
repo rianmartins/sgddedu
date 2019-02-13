@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartsService } from '../charts/components/echarts/charts.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-index',
@@ -9,12 +11,21 @@ import { ChartsService } from '../charts/components/echarts/charts.service';
 })
 export class IndexComponent implements OnInit {
   showloading: boolean = false;
+  isGuest: boolean = false;
 
   public AnimationBarOption;
 
-  constructor(private _chartsService: ChartsService) { }
+  constructor(private _chartsService: ChartsService,
+              private _auth: AuthService,
+              private _router: Router) { }
 
   ngOnInit() {
     this.AnimationBarOption = this._chartsService.getAnimationBarOption();
+
+    this.isGuest = this._auth.isGuest();
+
+    if(this.isGuest){
+      this._router.navigate(["login"])
+    }
   }
 }

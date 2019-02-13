@@ -1,20 +1,27 @@
 <div class="card card-block login-card">
   <h3 class="form-label">Welcome Back</h3>
   <span class="form-label">sign in to continue to Lines</span>
-  <div class="form-group">
+  <form class="form-group" [formGroup]="loginForm" #f="ngForm" (ngSubmit)="login(f.valid)" >
     <div class="input-group">
       <span class="input-group-addon addon-left" id="username">
         <i class="fa fa-user fa-fw"></i>
       </span>
-      <input class="form-control with-primary-addon" placeholder="User Account" type="text">
+      <input class="form-control with-primary-addon" formControlName="email" placeholder="Email" type="text">
     </div>
     <div class="input-group">
       <span class="input-group-addon addon-left" id="password">
         <i class="fa fa-lock fa-fw"></i>
       </span>
-      <input class="form-control with-primary-addon" placeholder="Password" type="password">
+      <input class="form-control with-primary-addon" formControlName="password" placeholder="Password" type="password">
     </div>
-    <button class="btn btn-lg btn-primary">Login</button>
-    <a href="" class="btn btn-link">Register Now. →</a>
-  </div>
+    <input type="submit" class="btn btn-lg btn-primary" value="Login" />
+    <div class="row">
+      <div class="col-md-6">
+        <a href="" class="btn btn-link">Cadastre-se → </a>
+      </div>
+      <div class="col-md-6">
+        <a href="" class="btn btn-link">Esqueci minha senha </a>
+      </div>
+    </div>
+  </form>
 </div>
