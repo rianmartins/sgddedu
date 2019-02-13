@@ -4,8 +4,8 @@
       <img src="{{avatarImgSrc}}" alt="avatar">
     </div>
     <div class="user-info-wrap">
-      <span class="user-name" title="{{userName}}">{{userName}}</span>
-      <span class="user-post" title="{{userPost}}">{{userPost}}</span>
+      <span class="user-name" title="{{user.name}}">{{user.name}}</span>
+      <span class="user-post" title="{{user.ocupation}}">{{user.ocupation}}</span>
     </div>
   </div>
 
@@ -17,21 +17,15 @@
 
 
   <div class="search-group">
-    <input type="text" class="search-input" placeholder="Search project · · ·">
+    <input type="text" class="search-input" placeholder="Buscar">
     <button class="search-btn">
       <i class="fa fa-search fa-fw"></i>
     </button>
   </div>
 
   <div class="msg-tips-wrap">
-    <div class="msg-entrance ring">
-      <span class="fa fa-bell fa-fw"></span>
-      <span class="badge" *ngIf="tip.ring"></span>
-    </div>
-    <div class="msg-entrance email">
-      <span class="fa fa-envelope fa-fw"></span>
-      <span class="badge" *ngIf="tip.email"></span>
-    </div>
+    <div class="msg-entrance push-right">
+        <span class="fa fa-power-off fa-fw" (click)="logout()"></span>
+      </div>
   </div>
-
 </div>
