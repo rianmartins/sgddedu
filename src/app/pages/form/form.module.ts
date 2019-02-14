@@ -4,6 +4,7 @@ import { routing } from './form.routing';
 import { SharedModule } from '../../shared/shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SelectModule } from 'ng2-select';
+import { FormsModule } from '@angular/forms';
 
 /* components */
 import { FormComponent } from './form.component';
@@ -21,7 +22,8 @@ import { ChildrenSelectComponent } from './components/ng2-select/children-select
         SharedModule,
         FileUploadModule,
         SelectModule,
-        routing
+        routing,
+        FormsModule
     ],
     declarations: [
         FormComponent,

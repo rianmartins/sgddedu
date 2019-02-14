@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 export const childRoutes: Routes = [
     {
@@ -8,7 +9,11 @@ export const childRoutes: Routes = [
         component: LoginComponent,
     },
     {
-        path: 'pages',
+        path: 'cadastro',
+        component: RegistrationComponent,
+    },
+    {
+        path: 'sgddedu',
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'index', pathMatch: 'full' },

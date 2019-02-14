@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { UserModel } from '../../shared/models/user-model';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   email: string;
   senha: string;
 
-  user: any;
+  user: UserModel;
 
   constructor(private _formBuilder: FormBuilder,
               private _auth: AuthService,
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(! this._auth.isGuest())
-      this._router.navigate(['index']);
+      this._router.navigate(['/sggedu/index']);
 
     this.loginForm = this._formBuilder.group({
       'email': [null, Validators.compose([Validators.required, Validators.email])],
@@ -35,15 +36,19 @@ export class LoginComponent implements OnInit {
     if(isValid){
 
       this.user = {
-        name: 'Educador',
+        name: 'Educador de Teste',
         email: this.loginForm.get('email').value,
         ocupation: 'Professor'
       };
 
       this._auth.setUser(this.user);
 
-      this._router.navigate(['index']);
+      this._router.navigate(['/sggedu/index']);
     }
+  }
+
+  registration(){
+    this._router.navigate(['cadastro']);
   }
 
 }

@@ -1,0 +1,32 @@
+@import '../../shared/theme/conf';
+.registration-card {
+    padding: 20px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: auto;
+
+    .form-group {
+        >.form-control {
+            margin-bottom: 10px;
+        }
+        >.help-block {
+            margin-top: -10px;
+        }
+    }
+    .btn-group{
+        display: flex;
+    }
+    .btn {
+        width: 50%;
+    }
+    input[type=submit]{
+        margin-right: 10px;
+    }
+    .btn-link {
+        margin: 10px 0;
+        color: lighten($fonts-color, 30%);
+    }
+}

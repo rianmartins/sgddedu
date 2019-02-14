@@ -4,6 +4,26 @@
     margin: 0;
 }
 
+.alert {
+    background: #f2edda;
+    padding: 7px;
+    font-size: .9em;
+    margin-bottom: 20px;
+    display: table;
+    animation: 2s alertAnim forwards;
+}
+
+@keyframes alertAnim {
+    from {
+        opacity:0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
 /* ul,
 div {
     padding: 0;

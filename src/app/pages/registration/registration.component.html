@@ -1,0 +1,34 @@
+<div class="card card-block registration-card">
+    <h3 class="form-label">Cadastre-se</h3>
+    <form class="form-group" [formGroup]="registrationForm" #form="ngForm" (ngSubmit)="post(form.valid)" >
+        <label class="control-label">Nome</label>
+        <input type="text" class="form-control" formControlName="name">
+        <div class="alert" *ngIf="(!registrationForm.controls['name'].valid && registrationForm.controls['name'].touched)">
+                {{ requiredAlert }}
+            </div>
+        <label class="control-label">Profissão</label>
+        <input type="text" class="form-control" formControlName="ocupation">
+        <div class="alert" *ngIf="(!registrationForm.controls['ocupation'].valid && registrationForm.controls['ocupation'].touched)">
+                {{ requiredAlert }}
+            </div>
+        <label class="control-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+        <div class="alert" *ngIf="(!registrationForm.controls['email'].valid && registrationForm.controls['email'].touched)">
+                {{ emailAlert }}
+            </div>
+        <label class="control-label">Senha</label>
+        <input type="password" class="form-control" formControlName="password">
+        <div class="alert" *ngIf="(!registrationForm.controls['password'].valid && registrationForm.controls['password'].touched)">
+            {{ requiredAlert }}
+        </div>
+        <label class="control-label">Confirme sua senha</label>
+        <input type="password" class="form-control" formControlName="passwordConfirmation" (keyup)="passwordConfirmationValidation()">
+        <div class="alert" *ngIf="(!registrationForm.controls['passwordConfirmation'].valid && registrationForm.controls['passwordConfirmation'].touched) || !validPassword">
+            {{ passwordMatchAlert }}
+        </div>
+        <div class="btn-group">
+            <input type="submit" class="btn btn-lg btn-primary" value="Cadastre-se" />
+            <input type="button" class="btn btn-lg btn-default" value="Voltar" routerLink="/login" routerLinkActive="active"/>
+        </div>
+    </form>
+</div>
