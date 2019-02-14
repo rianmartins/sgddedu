@@ -24,6 +24,10 @@ export class PagesTopComponent {
               private _auth: AuthService,
               private _router: Router) {
 
+    if(this._auth.isGuest()){
+      this._router.navigate(["/login"]);
+    }
+
     this.user = this._auth.getUser();
   }
 

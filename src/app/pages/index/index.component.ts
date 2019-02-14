@@ -12,6 +12,11 @@ import { Router } from "@angular/router";
 export class IndexComponent implements OnInit {
   showloading: boolean = false;
   isGuest: boolean = false;
+  user;
+
+  sgddeduList = [];
+  sgddeduCompletedList = [];
+  sgddeduInProgressList = [];
 
   public AnimationBarOption;
 
@@ -20,12 +25,39 @@ export class IndexComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
-    this.AnimationBarOption = this._chartsService.getAnimationBarOption();
-
     this.isGuest = this._auth.isGuest();
-
     if(this.isGuest){
-      this._router.navigate(["login"])
+      this._router.navigate(["/login"]);
     }
+    this.user = this._auth.getUser();
+    
+    this.AnimationBarOption = this._chartsService.getAnimationBarOption();
+    
+    this.sgddeduList = [
+      {
+        gameTitle: 'Titulo do Jogo 1',
+        author: 'SGDDEdu by ' + this.user.name,
+        done: false
+      },
+      {
+        gameTitle: 'Titulo do Jogo 2',
+        author: 'SGDDEdu by ' + this.user.name,
+        done: false
+      },
+      {
+        gameTitle: 'Titulo do Jogo 3',
+        author: 'SGDDEdu by ' + this.user.name,
+        done: true
+      },
+      {
+        gameTitle: 'Titulo do Jogo 4',
+        author: 'SGDDEdu by ' + this.user.name,
+        done: false
+      }
+    ];
+
+    this.sgddeduCompletedList = this.sgddeduList.filter(sgddedu => sgddedu.done);
+    this.sgddeduInProgressList = this.sgddeduList.filter(sgddedu => !sgddedu.done);
+
   }
 }
