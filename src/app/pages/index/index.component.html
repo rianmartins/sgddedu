@@ -1,15 +1,18 @@
 <div class="row">
   <div class="col-md-6">
-    <card cardTitle='Fazendo'>
-        <card isCollapse="false" class="sgddeduCard">
-          <h4>Title</h4>
-          <p>Author</p>
+    <card cardTitle="Fazendo">
+        <card isCollapse="false" class="sgddeduCard" *ngFor="let sgddedu of sgddeduInProgressList">
+          <h4>{{sgddedu.gameTitle}}</h4>
+          <p>{{sgddedu.author}}</p>
         </card>
     </card>
   </div>
   <div class="col-md-6">
     <card cardTitle="Feito">
-      <du-todolist></du-todolist>
+        <card isCollapse="false" class="sgddeduCard" *ngFor="let sgddedu of sgddeduCompletedList">
+            <h4>{{sgddedu.gameTitle}}</h4>
+            <p>{{sgddedu.author}}</p>
+          </card>
     </card>
   </div>
 </div>
