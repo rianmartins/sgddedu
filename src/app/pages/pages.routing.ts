@@ -21,6 +21,7 @@ export const childRoutes: Routes = [
             { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
             { path: 'icon', loadChildren: './icon/icon.module#IconModule' },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+            { path: 'alterar-senha', loadChildren: './password-change/password-change.module#PasswordChangeModule' },
             { path: 'form', loadChildren: './form/form.module#FormModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'ui', loadChildren: './ui/ui.module#UIModule' },

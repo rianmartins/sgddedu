@@ -53,7 +53,7 @@ export class RegistrationComponent {
       
             this._auth.setUser(this.user);
       
-            this._router.navigate(['/sggedu/index']);
+            this._router.navigate(['/sgddedu/index']);
           }
     }
 

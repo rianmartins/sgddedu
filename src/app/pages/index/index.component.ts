@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartsService } from '../charts/components/echarts/charts.service';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from "@angular/router";
@@ -23,12 +23,9 @@ export class IndexComponent implements OnInit {
 
   constructor(private _chartsService: ChartsService,
               private _auth: AuthService,
-              private _router: Router,
-              private _ref: ChangeDetectorRef) {
+              private _router: Router) {
 
                 this.user = this._auth.getUser();
-                this._ref.markForCheck();
-                console.log("constructor index");
   }
 
   ngOnInit() {
