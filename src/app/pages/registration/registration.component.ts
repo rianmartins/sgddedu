@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { UserModel } from '../../shared/models/user-model';
+import { AlertMessages } from '../../shared/constants/alertMessages';
 
 @Component({
 selector: 'app-registration',
@@ -15,9 +16,9 @@ export class RegistrationComponent {
     validPassword: boolean = true;
     user: UserModel;
 
-    requiredAlert: string = 'Esse campo é obrigatório.';
-    emailAlert: string = 'Favor digitar um email válido.';
-    passwordMatchAlert: string = 'A confirmação da senha deve ser igual a senha digitada anteriormente.';
+    requiredAlert: string = AlertMessages.REQUIRED;
+    emailAlert: string = AlertMessages.EMAIL;
+    passwordMatchAlert: string = AlertMessages.PASSWORD_MATCH;
 
     constructor(private _formBuilder: FormBuilder,
                 private _auth: AuthService,

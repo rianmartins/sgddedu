@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { UserModel } from '../../models/user-model';
 
 @Component({
   selector: 'pages-top',
@@ -11,11 +12,7 @@ import { Router } from '@angular/router';
 export class PagesTopComponent {
 
   avatarImgSrc: string = 'assets/images/icon_no_avatar.png';
-  user: any = {
-    name: '',
-    ocupation: ''
-  };
-
+  user: UserModel;
 
   sidebarToggle: boolean = true;
   tip = { ring: true, email: true };
@@ -29,6 +26,11 @@ export class PagesTopComponent {
     }
 
     this.user = this._auth.getUser();
+    console.log("pagesTop constructor");
+  }
+
+  ngOnInit() {  
+    console.log("pagesTop ngOnInit");
   }
 
   public _sidebarToggle() {
