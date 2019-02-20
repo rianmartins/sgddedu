@@ -26,11 +26,6 @@ export class PagesTopComponent {
     }
 
     this.user = this._auth.getUser();
-    console.log("pagesTop constructor");
-  }
-
-  ngOnInit() {  
-    console.log("pagesTop ngOnInit");
   }
 
   public _sidebarToggle() {
