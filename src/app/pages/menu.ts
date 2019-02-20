@@ -25,7 +25,7 @@ export let MENU_ITEM = [
         icon: 'file',
         children: [
             {
-                path: 'lista',
+                path: 'listar',
                 title: 'Ver todos'
             },
             {
