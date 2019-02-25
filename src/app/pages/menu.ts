@@ -21,7 +21,7 @@ export let MENU_ITEM = [
     },
     {
         path: '',
-        title: 'SGGDEdu',
+        title: 'SGDDEdu',
         icon: 'file',
         children: [
             {
