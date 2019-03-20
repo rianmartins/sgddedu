@@ -1,0 +1,117 @@
+<h1>Descritor SGDDEdu</h1>
+<div class="row container">
+    <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Componente Curricular</label>
+                    <ng-select [items]="componentesCurriculares" [disabled]="disabled" (selected)="selected($event)" [placeholder]="placeholder">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Nível de Ensino</label>
+                    <ng-select [items]="niveisEnsino" [disabled]="disabled" (selected)="selected($event)" [placeholder]="placeholder">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Unidades Temáticas</label>
+                    <ng-select [items]="unidadesTematicas" [disabled]="disabled" (selected)="selected($event)" [placeholder]="placeholder">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Objetos de Conhecimento</label>
+                    <ng-select [items]="objetosConhecimentos" [disabled]="disabled" (selected)="selected($event)" [placeholder]="placeholder">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Habilidades</label>
+                    <ng-select [items]="habilidades" [disabled]="disabled" (selected)="selected($event)" [placeholder]="placeholder">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Teorias pedagógicas</label>
+                    <ng-select [items]="teoriasPedagogicas" [disabled]="disabled" (selected)="selected($event)" [placeholder]="placeholder">
+                    </ng-select>
+                </div>
+            </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Título do Jogo</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Autor do Jogo</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Contexto do Jogo</label>
+                <textarea class="form-control" type="text"></textarea>
+            </div>
+        </div>
+        <div class="row bottom">
+            <div class="col-md-3">
+                <button class="btn btn-category-arts col-md-12" (click)="addKeyWord(categories.arts, gameDescription)">Artes</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-category-audio col-md-12" (click)="addKeyWord(categories.audio, gameDescription)">Audio</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-category-programming col-md-12" (click)="addKeyWord(categories.programming, gameDescription)">Programação</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-category-pedagogicalGoals col-md-12" (click)="addKeyWord(categories.pedagogicalGoals, gameDescription)">Objetivo Pedagógico</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <label class="form-label">Descrição do Jogo</label>
+        <textarea #gameDescription rows="20" class="form-control" (select)="selectionchange($event)"></textarea>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <card>
+            <category categoryName="Arte" categoryColor="yellow">
+                [ {{artes.join(', ')}} ]
+            </category>
+        </card>
+    </div>
+    <div class="col-md-3">
+        <card>
+            <category categoryName="Áudio" categoryColor="blue">
+                [ {{audio.join(', ')}} ]
+            </category>
+        </card>
+    </div>
+    <div class="col-md-3">
+        <card>
+            <category categoryName="Programação" categoryColor="orange">
+                [ {{programacao.join(', ')}} ]
+            </category>
+        </card>
+    </div>
+    <div class="col-md-3">
+        <card>
+            <category categoryName="Objetivo Pedagógico" categoryColor="purple">
+                [ {{objetivosPedagogicos.join(', ')}} ]
+            </category>
+        </card>
+    </div>
+</div>
