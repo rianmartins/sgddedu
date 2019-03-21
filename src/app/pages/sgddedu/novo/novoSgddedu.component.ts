@@ -1,10 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { SGDDModel } from '../../../shared/models/sgdd-model';
+import { HighlightTag } from 'angular-text-input-highlight';
 
 @Component({
   selector: 'app-novoSgddedu',
   templateUrl: './novoSgddedu.component.html',
-  styleUrls: ['./novoSgddedu.component.scss']
+  styleUrls: ['./novoSgddedu.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NovoSgddeduComponent  {
 
@@ -18,15 +20,21 @@ export class NovoSgddeduComponent  {
     categories: any;
 
     artes = [];
+    artesList: string;
     audio = [];
+    audioList: string;
     programacao = [];
+    programacaoList: string;
     objetivosPedagogicos = [];
+    objetivosPedagogicosList: string;
 
     placeholder: string = "::SELECIONE::";
 
     selectedWord: string;
 
-    constructor() { 
+    tags: HighlightTag[] = [];
+
+    constructor(private ref: ChangeDetectorRef) { 
         this.sgdd = {
             componenteCurricularId: 1,
             nivelEnsinoId: 2,
@@ -127,24 +135,27 @@ export class NovoSgddeduComponent  {
     console.log('Selected value is: ', value);
   }
 
-  addKeyWord(category: string, input: any){
+  addKeyWord(category: string, input: any, highlightText: any){
       if(this.selectedWord != undefined && this.selectedWord != ""){
           switch(category){
               case this.categories.arts:
-                  this.artes.push(this.selectedWord);
+                  this.artes.push({"word":this.selectedWord, "startIndex": input.selectionStart});
+                  this.highlightKeyWord(input, category,'bg-yellow');
               break;
               case this.categories.audio:
-                  this.audio.push(this.selectedWord);
+                  this.audio.push({"word":this.selectedWord, "startIndex": input.selectionStart});
+                  this.highlightKeyWord(input, category,'bg-blue');
               break;
               case this.categories.programming:
-                  this.programacao.push(this.selectedWord);
+                  this.programacao.push({"word":this.selectedWord, "startIndex": input.selectionStart});
+                  this.highlightKeyWord(input, category,'bg-orange');
               break;
               case this.categories.pedagogicalGoals:
-                  this.objetivosPedagogicos.push(this.selectedWord);
+                  this.objetivosPedagogicos.push({"word":this.selectedWord, "startIndex": input.selectionStart});
+                  this.highlightKeyWord(input, category,'bg-purple');
               break;
           }
-          input.focus();
-          input.setSelectionRange(input.selectionEnd, input.selectionEnd);
+          this.updateList(highlightText);
       }
   }
 
@@ -153,5 +164,59 @@ export class NovoSgddeduComponent  {
     let end = ev.target.selectionEnd;
     this.selectedWord = ev.target.value.substr(start, end - start);
   }
+
+  highlightKeyWord(input: any, category: string, cssClass: string){
+        this.tags.push({
+            indices: { start: input.selectionStart, end: input.selectionEnd },
+            cssClass: cssClass,
+            data: { "category": category, "startIndex": input.selectionStart }
+        });
+        input.focus();
+        input.setSelectionRange(input.selectionEnd, input.selectionEnd);
+        // input.update();
+  }
+
+  tagHover(elm: HTMLElement){
+    if (elm.classList.contains('bg-yellow')) {
+        elm.classList.add('bg-yellow-dark');
+    } else if (elm.classList.contains('bg-blue')) {
+        elm.classList.add('bg-blue-dark');
+    } else if (elm.classList.contains('bg-orange')) {
+        elm.classList.add('bg-orange-dark');
+    } else if (elm.classList.contains('bg-purple')) {
+        elm.classList.add('bg-purple-dark');
+    }
+  }
+
+  tagHoverOff(elm: HTMLElement){
+    elm.classList.remove('bg-yellow-dark');
+    elm.classList.remove('bg-blue-dark');
+    elm.classList.remove('bg-orange-dark');
+    elm.classList.remove('bg-purple-dark');
+  }
+
+  removeTag(tag, highlightText){
+    this.tags.splice(this.tags.findIndex(t => t === tag),1);
+    eval('this.' + tag.data.category).splice(eval('this.' + tag.data.category).findIndex(i => i.startIndex === tag.indices.start),1);
+    this.updateList(highlightText);
+  }
+
+  updateList(highlightText: any){
+      this.artesList = this.artes.map(i => i.word).join(', ');
+      this.audioList = this.audio.map(i => i.word).join(', ');
+      this.programacaoList = this.programacao.map(i => i.word).join(', ');
+      this.objetivosPedagogicosList = this.objetivosPedagogicos.map(i => i.word).join(', ');
+
+      highlightText.textInputElementChanged();
+  }
+
+  onInput(event){
+      console.log(event);
+      console.log(event.target.selectionStart);
+  }
+
+  onPaste(event){
+    console.log(event.clipboardData.getData('text/plain').length);
+}
 
 }

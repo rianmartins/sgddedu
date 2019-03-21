@@ -65,16 +65,16 @@
         </div>
         <div class="row bottom">
             <div class="col-md-3">
-                <button class="btn btn-category-arts col-md-12" (click)="addKeyWord(categories.arts, gameDescription)">Artes</button>
+                <button class="btn btn-category-arts col-md-12" (click)="addKeyWord(categories.arts, gameDescription, highLightText)">Artes</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-category-audio col-md-12" (click)="addKeyWord(categories.audio, gameDescription)">Audio</button>
+                <button class="btn btn-category-audio col-md-12" (click)="addKeyWord(categories.audio, gameDescription, highLightText)">Audio</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-category-programming col-md-12" (click)="addKeyWord(categories.programming, gameDescription)">Programação</button>
+                <button class="btn btn-category-programming col-md-12" (click)="addKeyWord(categories.programming, gameDescription, highLightText)">Programação</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-category-pedagogicalGoals col-md-12" (click)="addKeyWord(categories.pedagogicalGoals, gameDescription)">Objetivo Pedagógico</button>
+                <button class="btn btn-category-pedagogicalGoals col-md-12" (click)="addKeyWord(categories.pedagogicalGoals, gameDescription, highLightText)">Objetivo Pedagógico</button>
             </div>
         </div>
     </div>
@@ -82,35 +82,45 @@
 <div class="row">
     <div class="col-md-12">
         <label class="form-label">Descrição do Jogo</label>
-        <textarea #gameDescription rows="20" class="form-control" (select)="selectionchange($event)"></textarea>
+        <div mwlTextInputHighlightContainer>
+            <textarea #gameDescription mwlTextInputElement rows="20" class="form-control" (select)="selectionchange($event)" (paste)="onPaste($event)" (input)="onInput($event)"></textarea>
+            <mwl-text-input-highlight 
+                [tags]="tags" 
+                [textInputElement]="gameDescription"
+                (tagMouseEnter)="tagHover($event.target)"
+                (tagMouseLeave)="tagHoverOff($event.target)"
+                (tagClick)="removeTag($event.tag, highLightText)"
+                #highLightText>
+            </mwl-text-input-highlight>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-3">
         <card>
             <category categoryName="Arte" categoryColor="yellow">
-                [ {{artes.join(', ')}} ]
+                [ {{artesList}} ]
             </category>
         </card>
     </div>
     <div class="col-md-3">
         <card>
             <category categoryName="Áudio" categoryColor="blue">
-                [ {{audio.join(', ')}} ]
+                [ {{audioList}} ]
             </category>
         </card>
     </div>
     <div class="col-md-3">
         <card>
             <category categoryName="Programação" categoryColor="orange">
-                [ {{programacao.join(', ')}} ]
+                [ {{programacaoList}} ]
             </category>
         </card>
     </div>
     <div class="col-md-3">
         <card>
             <category categoryName="Objetivo Pedagógico" categoryColor="purple">
-                [ {{objetivosPedagogicos.join(', ')}} ]
+                [ {{objetivosPedagogicosList}} ]
             </category>
         </card>
     </div>
