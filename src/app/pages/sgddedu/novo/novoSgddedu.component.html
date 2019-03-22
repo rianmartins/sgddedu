@@ -83,7 +83,7 @@
     <div class="col-md-12">
         <label class="form-label">Descrição do Jogo</label>
         <div mwlTextInputHighlightContainer>
-            <textarea #gameDescription mwlTextInputElement rows="20" class="form-control" (select)="selectionchange($event)" (paste)="onPaste($event)" (input)="onInput($event)"></textarea>
+            <textarea #gameDescription mwlTextInputElement rows="20" class="form-control" (select)="selectionchange($event)" (paste)="onInputAndPaste($event, 'paste')" (input)="onInputAndPaste($event, 'input')"></textarea>
             <mwl-text-input-highlight 
                 [tags]="tags" 
                 [textInputElement]="gameDescription"

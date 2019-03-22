@@ -210,13 +210,47 @@ export class NovoSgddeduComponent  {
       highlightText.textInputElementChanged();
   }
 
-  onInput(event){
-      console.log(event);
-      console.log(event.target.selectionStart);
+  onInputAndPaste(event: any, eventType: string){
+      if(this.tags.length){
+          let cursorAt = event.target.selectionStart;
+          let inputStartedAt;
+          let numberToShift;
+          if(eventType == "input"){
+              if(event.inputType == "insertText"){
+                  numberToShift = 1;
+                  inputStartedAt = cursorAt - 1;
+              }
+              else if(event.inputType == "deleteContentBackward"){
+                  numberToShift = -1;
+                  inputStartedAt = cursorAt + 1;
+                  if(this.selectedWord){
+                      numberToShift = - this.selectedWord.length;
+                      inputStartedAt = cursorAt + this.selectedWord.length;
+                      this.selectedWord = "";
+                  }
+              }
+              else if(event.inputType == "deleteContentForward"){
+                  numberToShift = -1;
+                  inputStartedAt = cursorAt;
+              }
+              this.shiftTags(inputStartedAt, numberToShift);
+          }
+          else if(eventType == "paste"){
+              inputStartedAt = cursorAt;
+              numberToShift =  event.clipboardData.getData('text/plain').length;
+  
+              this.shiftTags(inputStartedAt, numberToShift);
+          }
+      }
   }
 
-  onPaste(event){
-    console.log(event.clipboardData.getData('text/plain').length);
-}
+  shiftTags(inputStartedAt, numberToShift){
+    this.tags.forEach((tag, index) => {
+        if(tag.indices.start >= inputStartedAt){
+            this.tags[index].indices.start += numberToShift;
+            this.tags[index].indices.end += numberToShift;
+        }
+    });
+  }
 
 }
