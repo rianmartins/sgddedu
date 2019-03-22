@@ -19,6 +19,7 @@ export const childRoutes: Routes = [
             { path: '', redirectTo: 'index', pathMatch: 'full' },
             { path: 'index', loadChildren: './index/index.module#IndexModule' },
             { path: 'listar', loadChildren: './sgddedu/listar/listarSgddedu.module#ListarSgddeduModule' },
+            { path: 'novo', loadChildren: './sgddedu/novo/novoSgddedu.module#NovoSgddeduModule' },
             { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
             { path: 'icon', loadChildren: './icon/icon.module#IconModule' },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },

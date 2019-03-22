@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
 
 /* components */
 import { CardComponent } from './components/card/card.component';
+import { CategoryComponent } from './components/category/category.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
 import { TabsetComponent } from './components/tabset/tabset.component';
 import { TabContentComponent } from './components/tabset/tab-content/tab-content.component';
@@ -28,6 +29,7 @@ import { ProfileComponent } from './components/profile/profile.component';
   ],
   declarations: [
     CardComponent,
+    CategoryComponent,
     FileTreeComponent,
     TodolistComponent,
     TabsetComponent,
@@ -41,6 +43,7 @@ import { ProfileComponent } from './components/profile/profile.component';
   ],
   exports: [
     CardComponent,
+    CategoryComponent,
     FileTreeComponent,
     TodolistComponent,
     TabsetComponent,

@@ -1,0 +1,93 @@
+$yellow: #FFD700;
+$blue: #00BFFF;
+$organge: #FF8C00;
+$purple: #BA55D3;
+
+.row {
+    margin-bottom: 10px;
+}
+
+.card-content[_ngcontent-c10] {
+    height: 300px !important;
+}
+
+.btn-category-arts{
+    background-color: $yellow;
+}
+
+.btn-category-audio{
+    background-color: $blue;
+}
+
+.btn-category-programming{
+    background-color: $organge;
+}
+
+.btn-category-pedagogicalGoals{
+    background-color: $purple;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 0;
+    width: 104%;
+}
+
+.container{
+    display: table;
+    width: 100%;
+    padding-right: 0;
+}
+
+.container > div {
+    float: none;
+    display: table-cell;
+    
+}
+
+.container > div:first-child {
+    padding: 0 30px 0 0;
+}
+
+.container > div:nth-child(2) {
+    padding: 0;
+}
+
+div.text-input-highlight-container textarea {
+    border: 1px solid lightslategray !important;
+}
+
+// highlighting
+
+// by default you won't see the highlighted tags until
+// you add a CSS class with a background color
+.bg-yellow {
+    background-color: $yellow;
+    opacity: 0.4;
+}
+.bg-blue {
+    background-color: $blue;
+    opacity: 0.4;
+}
+.bg-orange {
+    background-color: $organge;
+    opacity: 0.4;
+}
+.bg-purple {
+    background-color: $purple;
+    opacity: 0.4;
+}
+
+.bg-yellow-dark {
+    opacity: 1;
+    cursor: pointer !important;
+}
+.bg-blue-dark {
+    opacity: 1;
+}
+.bg-orange-dark {
+    opacity: 1;
+}
+.bg-purple-dark {
+    opacity: 1;
+}
